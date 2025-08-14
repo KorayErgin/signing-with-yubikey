@@ -1,0 +1,66 @@
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+
+public class PivProvisioner {
+
+    // Platforma göre executable adı (Windows'ta .exe)
+    private static final String PIVTOOL = isWindows() ? "yubico-piv-tool.exe" : "yubico-piv-tool";
+
+    public static void main(String[] args) throws Exception {
+        String pin = "123456";                 // TODO: güvenli şekilde al
+        String cn  = "Koray YK 9c RSA";       // sertifika Subject CN
+
+        // Geçici dosya yolları
+        File pubKeyPem = new File("pubkey.pem");
+        File certPem   = new File("cert.pem");
+
+        // 1) PIN doğrula (opsiyonel ama akışı netleştirir)
+        runPivTool("-a", "verify-pin", "-P", pin);
+
+        // 2) 9c slotunda RSA2048 anahtar üret → public key PEM yaz
+        //    (İstersen -a set-pin-retries, -a set-chuid vs. gibi adımlar eklenebilir)
+        runPivTool("-s", "9c", "-A", "RSA2048", "-a", "generate", "-o", pubKeyPem.getAbsolutePath());
+
+        // 3) Self-signed sertifika üret (test amaçlı)
+        //    Gerçekte, -a request ile CSR çıkarıp kurumsal CA’da imzalayıp import etmek daha doğru.
+        runPivTool("-a", "verify-pin", "-P", pin,
+                   "-s", "9c",
+                   "-a", "selfsign",
+                   "-S", "/CN=" + cn + "/",
+                   "-i", pubKeyPem.getAbsolutePath(),
+                   "-o", certPem.getAbsolutePath());
+
+        // 4) Sertifikayı 9c slotuna import et
+        runPivTool("-s", "9c", "-a", "import-certificate", "-i", certPem.getAbsolutePath());
+
+        System.out.println("✅ 9c için anahtar ve sertifika hazır (RSA2048).");
+
+        // Dosyaları saklamak istemiyorsan sil:
+        // pubKeyPem.delete(); certPem.delete();
+    }
+
+    private static void runPivTool(String... args) throws Exception {
+        List<String> cmd = new ArrayList<>();
+        cmd.add(PIVTOOL);
+        for (String a : args) cmd.add(a);
+
+        ProcessBuilder pb = new ProcessBuilder(cmd);
+        pb.redirectErrorStream(true);
+        Process p = pb.start();
+
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream(), StandardCharsets.UTF_8))) {
+            String line; while ((line = br.readLine()) != null) {
+                System.out.println("[pivtool] " + line);
+            }
+        }
+        int code = p.waitFor();
+        if (code != 0) throw new RuntimeException("yubico-piv-tool exit=" + code + " args=" + String.join(" ", args));
+    }
+
+    private static boolean isWindows() {
+        String os = System.getProperty("os.name", "").toLowerCase();
+        return os.contains("win");
+    }
+}
