@@ -1,0 +1,21 @@
+
+ykman piv keys generate --algorithm ECCP256 --pin-policy ALWAYS --touch-policy NEVER 9c pubkey.pem \
+&& ykman piv certificates generate --subject "CN=Koray ECC,O=Koray Ltd,C=TR" 9c pubkey.pem \
+&& ykman piv certificates export 9c cert_9c.pem
+
+
+
+
+
+
+ykman piv keys generate \
+  --algorithm ECCP256 \
+  --pin-policy NEVER \
+  --touch-policy NEVER \
+  9c pubkey.pem
+
+ykman piv certificates generate \
+  --subject "CN=Koray ECC" \
+  9c pubkey.pem
+
+ykman piv certificates export 9c cert.pem
