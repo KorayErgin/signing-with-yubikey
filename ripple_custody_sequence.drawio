@@ -1,0 +1,245 @@
+<?xml version="1.0" ?>
+<mxfile host="app.diagrams.net" modified="2025-11-05T00:00:00Z" agent="python-script" version="24.7.5">
+  <diagram name="Ripple Custody – Soğuk→Sıcak Transfer (Sequence)">
+    <mxGraphModel dx="2210" dy="1486" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="lane_P" value="Platform" style="swimlane;startSize=26;horizontal=0;rounded=1;html=1;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="60" y="100" width="180" height="900" as="geometry"/>
+        </mxCell>
+        <mxCell id="lane_CA" value="Kurumsal Onay Uygulaması" style="swimlane;startSize=26;horizontal=0;rounded=1;html=1;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="260" y="100" width="180" height="900" as="geometry"/>
+        </mxCell>
+        <mxCell id="lane_RC" value="Ripple Custody API" style="swimlane;startSize=26;horizontal=0;rounded=1;html=1;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="460" y="100" width="180" height="900" as="geometry"/>
+        </mxCell>
+        <mxCell id="lane_IS" value="Intent / Operation Service" style="swimlane;startSize=26;horizontal=0;rounded=1;html=1;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="660" y="100" width="180" height="900" as="geometry"/>
+        </mxCell>
+        <mxCell id="lane_OR" value="Orchestrator" style="swimlane;startSize=26;horizontal=0;rounded=1;html=1;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="860" y="100" width="180" height="900" as="geometry"/>
+        </mxCell>
+        <mxCell id="lane_HSM" value="HSM (İmza)" style="swimlane;startSize=26;horizontal=0;rounded=1;html=1;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="100" width="180" height="900" as="geometry"/>
+        </mxCell>
+        <mxCell id="lane_NP" value="Node Provider" style="swimlane;startSize=26;horizontal=0;rounded=1;html=1;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="100" width="180" height="900" as="geometry"/>
+        </mxCell>
+        <mxCell id="lane_XRPL" value="Ripple Ağı" style="swimlane;startSize=26;horizontal=0;rounded=1;html=1;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1460" y="100" width="180" height="900" as="geometry"/>
+        </mxCell>
+        <mxCell id="line_P" value="" style="shape=line;strokeWidth=1;html=1;dashed=1;perimeter=none;" vertex="1" parent="1">
+          <mxGeometry x="149.0" y="140" width="2" height="840" as="geometry"/>
+        </mxCell>
+        <mxCell id="line_CA" value="" style="shape=line;strokeWidth=1;html=1;dashed=1;perimeter=none;" vertex="1" parent="1">
+          <mxGeometry x="349.0" y="140" width="2" height="840" as="geometry"/>
+        </mxCell>
+        <mxCell id="line_RC" value="" style="shape=line;strokeWidth=1;html=1;dashed=1;perimeter=none;" vertex="1" parent="1">
+          <mxGeometry x="549.0" y="140" width="2" height="840" as="geometry"/>
+        </mxCell>
+        <mxCell id="line_IS" value="" style="shape=line;strokeWidth=1;html=1;dashed=1;perimeter=none;" vertex="1" parent="1">
+          <mxGeometry x="749.0" y="140" width="2" height="840" as="geometry"/>
+        </mxCell>
+        <mxCell id="line_OR" value="" style="shape=line;strokeWidth=1;html=1;dashed=1;perimeter=none;" vertex="1" parent="1">
+          <mxGeometry x="949.0" y="140" width="2" height="840" as="geometry"/>
+        </mxCell>
+        <mxCell id="line_HSM" value="" style="shape=line;strokeWidth=1;html=1;dashed=1;perimeter=none;" vertex="1" parent="1">
+          <mxGeometry x="1149.0" y="140" width="2" height="840" as="geometry"/>
+        </mxCell>
+        <mxCell id="line_NP" value="" style="shape=line;strokeWidth=1;html=1;dashed=1;perimeter=none;" vertex="1" parent="1">
+          <mxGeometry x="1349.0" y="140" width="2" height="840" as="geometry"/>
+        </mxCell>
+        <mxCell id="line_XRPL" value="" style="shape=line;strokeWidth=1;html=1;dashed=1;perimeter=none;" vertex="1" parent="1">
+          <mxGeometry x="1549.0" y="140" width="2" height="840" as="geometry"/>
+        </mxCell>
+        <mxCell id="note_P_140" value="Talep: Soğuk → Sıcak
+(amount, memo, ...)" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#f5f5f5;strokeColor=#b3b3b3;" vertex="1" parent="1">
+          <mxGeometry x="70.0" y="140" width="160" height="54" as="geometry"/>
+        </mxCell>
+        <mxCell id="pt_P_180" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="145.0" y="180" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="pt_RC_180" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="545.0" y="180" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_P_RC_180" value="POST /intents" style="endArrow=block;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeWidth=1.2;" edge="1" parent="1" source="pt_P_180" target="pt_RC_180">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pt_RC_250" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="545.0" y="250" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="pt_IS_250" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="745.0" y="250" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_RC_IS_250" value="createIntent(intent)" style="endArrow=block;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeWidth=1.2;" edge="1" parent="1" source="pt_RC_250" target="pt_IS_250">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pt_RC_320" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="545.0" y="320" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="pt_P_320" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="145.0" y="320" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_RC_P_320" value="201 Created (intentId)" style="endArrow=block;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeWidth=1.2;" edge="1" parent="1" source="pt_RC_320" target="pt_P_320">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pt_P_390" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="145.0" y="390" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="pt_CA_390" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="345.0" y="390" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_P_CA_390" value="Onay Görevi (n onay)" style="endArrow=block;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeWidth=1.2;" edge="1" parent="1" source="pt_P_390" target="pt_CA_390">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="note_CA_350" value="Threshold / Quorum
+Zaman penceresi" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#f5f5f5;strokeColor=#b3b3b3;" vertex="1" parent="1">
+          <mxGeometry x="270.0" y="350" width="160" height="48" as="geometry"/>
+        </mxCell>
+        <mxCell id="pt_CA_460" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="345.0" y="460" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="pt_RC_460" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="545.0" y="460" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_CA_RC_460" value="status=APPROVED
+(alt: REJECTED)" style="endArrow=block;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeWidth=1.2;" edge="1" parent="1" source="pt_CA_460" target="pt_RC_460">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pt_RC_530" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="545.0" y="530" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="pt_IS_530" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="745.0" y="530" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_RC_IS_530" value="buildOperation(intentId)" style="endArrow=block;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeWidth=1.2;" edge="1" parent="1" source="pt_RC_530" target="pt_IS_530">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pt_RC_600" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="545.0" y="600" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="pt_OR_600" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="945.0" y="600" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_RC_OR_600" value="signRequest(txBlob)" style="endArrow=block;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeWidth=1.2;" edge="1" parent="1" source="pt_RC_600" target="pt_OR_600">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pt_OR_670" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="945.0" y="670" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="pt_HSM_670" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="1145.0" y="670" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_OR_HSM_670" value="C_Sign(txBlob)" style="endArrow=block;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeWidth=1.2;" edge="1" parent="1" source="pt_OR_670" target="pt_HSM_670">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pt_HSM_740" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="1145.0" y="740" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="pt_OR_740" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="945.0" y="740" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_HSM_OR_740" value="signature" style="endArrow=block;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeWidth=1.2;" edge="1" parent="1" source="pt_HSM_740" target="pt_OR_740">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pt_OR_810" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="945.0" y="810" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="pt_RC_810" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="545.0" y="810" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_OR_RC_810" value="signedTx" style="endArrow=block;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeWidth=1.2;" edge="1" parent="1" source="pt_OR_810" target="pt_RC_810">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pt_RC_880" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="545.0" y="880" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="pt_NP_880" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="1345.0" y="880" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_RC_NP_880" value="broadcast(signedTx)" style="endArrow=block;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeWidth=1.2;" edge="1" parent="1" source="pt_RC_880" target="pt_NP_880">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pt_NP_950" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="1345.0" y="950" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="pt_XRPL_950" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="1545.0" y="950" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_NP_XRPL_950" value="submit()" style="endArrow=block;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeWidth=1.2;" edge="1" parent="1" source="pt_NP_950" target="pt_XRPL_950">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pt_XRPL_1020" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="1545.0" y="1020" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="pt_NP_1020" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="1345.0" y="1020" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_XRPL_NP_1020" value="tesSUCCESS + txHash" style="endArrow=block;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeWidth=1.2;" edge="1" parent="1" source="pt_XRPL_1020" target="pt_NP_1020">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pt_NP_1090" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="1345.0" y="1090" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="pt_RC_1090" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="545.0" y="1090" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_NP_RC_1090" value="txHash" style="endArrow=block;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeWidth=1.2;" edge="1" parent="1" source="pt_NP_1090" target="pt_RC_1090">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pt_RC_1160" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="545.0" y="1160" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="pt_P_1160" value="" style="opacity=0;" vertex="1" parent="1">
+          <mxGeometry x="145.0" y="1160" width="10" height="10" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_RC_P_1160" value="COMPLETED + txHash" style="endArrow=block;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;strokeWidth=1.2;" edge="1" parent="1" source="pt_RC_1160" target="pt_P_1160">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="note_RC_530" value="Süre Aşımı:
+intent=EXPIRED" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#f5f5f5;strokeColor=#b3b3b3;" vertex="1" parent="1">
+          <mxGeometry x="470.0" y="530" width="160" height="48" as="geometry"/>
+        </mxCell>
+        <mxCell id="note_OR_740" value="İmza Hatası:
+FAILED_SIGNING" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#f5f5f5;strokeColor=#b3b3b3;" vertex="1" parent="1">
+          <mxGeometry x="870.0" y="740" width="160" height="48" as="geometry"/>
+        </mxCell>
+        <mxCell id="note_NP_950" value="Yayın Hatası:
+RETRY + Backoff" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#f5f5f5;strokeColor=#b3b3b3;" vertex="1" parent="1">
+          <mxGeometry x="1270.0" y="950" width="160" height="48" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
