@@ -1,0 +1,135 @@
+harmonize:
+  repository:
+    pullSecret:
+      enabled: true
+      registry: metaco.azurecr.io
+      username: client-yapikredi
+      password: ********************************
+
+  urls:
+    base: hostname..
+    tls: true
+
+  isOnPrem: true
+
+  certificates:
+    .......
+    ......
+
+  postgresql:
+    host: 1.2.3.4
+    port: 5432
+    username: postgres
+    password: postgres
+    dotNetParams: "Ssl Mode=Disable"
+    urlParams: "sslmode=disable"
+
+  logging:
+    logLevel: Trace
+  
+  notary:
+    protocol: http
+ 
+  genesis:
+    enabled: false
+
+  ledgers:
+    ethereum:
+      testnet-sepolia:
+        enabled: true
+        enableUIS: false  # This is Local indexer
+        uri:  "<ethereum-sepolia-rpc-endpoint>"
+
+    tron:
+      testnet:
+        enabled: true
+        enableUIS: true
+        uri: 'https://api.shasta.trongrid.io'
+        chainId: '2494104990'
+        instanceToken: '11111111-1111-1111-1111-111111111111'
+    solana:
+      devnet:
+        enabled: true
+        enableUIS: true
+        url: '<solana-devnet-rpc-url>'
+        passphrase: ''
+        chainId: '901'
+        instanceToken: '11111111-1111-1111-1111-111111111111'
+    xrpl:
+      testnet:
+        enabled: true
+        enableUIS: true
+        uri: '<xrpl-testnet-rpc-url>'
+        instanceToken: '11111111-1111-1111-1111-111111111111'
+
+  #Telemetry endpoint configured by otel-collector
+  telemetry:
+    type: disabled
+    protocol: http
+    host: "1.2.3.4"
+    port: 4317
+    otel:
+      enabled: false
+    syslog:
+      enabled: false
+
+  vaults:
+    '00000000-0000-0000-0000-000000000000':
+      enabled: true
+      platform: kms_mock
+      kms_mock:
+        mock_phrase: "hello_world"
+      notary_public_key: "pem:*************************"
+
+  # Don't need these
+  excluded_components: ["web3connector", "flows", "virtual-accounting", "coinbase-adapter", "eod-reconciliation", "vault-bridge", "notary"]
+
+# Enable UIS components (events-api, indexer, processor, api, adapter)
+uis:
+  enabled: true
+
+vault:
+  image:
+    tag: 1.27.4
+    kmsconnect:
+      tag: 1.9.15
+common:
+  ingress:
+    main:
+      ingressClassName: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+
+components:
+  frontend:
+    image:
+      tag: 5.26.25
+  oauth:
+    image:
+      tag: 5.26.25
+  keycloak:
+    image:
+      tag: 1.22.11  # From 1.26.5 release
+  gateway:
+    image:
+      tag: 1.22.11  # From 1.26.5 release
+  notary-bridge:
+    image:
+      tag: 1.22.11  # From 1.26.5 release
+  notary:
+    platform: kms_mock
+    kms_mock:
+      phrase: "this_is_a_mock_phrase"
+    image:
+      tag: 1.22.11  # From 1.26.5 release
+      kmsconnect:
+        tag: 1.9.15
+  ledger-accounting:
+    image:
+      tag: 1.22.11  # From 1.26.5 release
+  notification:
+    image:
+      tag: 5.26.25
+
+postgresql:
+  enabled: false
